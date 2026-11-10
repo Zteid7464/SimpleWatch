@@ -20,8 +20,6 @@ void turnOffLEDs(void);
 void displayNum(uint8_t n);
 uint8_t currentLED = 0;
 
-static void iwdg_setup(uint16_t reload_val, uint8_t prescaler);
-
 #define SDA 1
 #define SCL 2
 
@@ -256,16 +254,6 @@ void displayNum(uint8_t n) {
         turnOffLEDs();
     }
     currentLED++;
-}
-
-static void iwdg_setup(uint16_t reload_val, uint8_t prescaler) {
-	IWDG->CTLR = 0x5555;
-	IWDG->PSCR = prescaler;
-
-	IWDG->CTLR = 0x5555;
-	IWDG->RLDR = reload_val & 0xfff;
-
-	IWDG->CTLR = 0xCCCC;
 }
 
 void i2cStart(void) {
