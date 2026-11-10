@@ -140,6 +140,7 @@ int main(void) {
             GPIOC->BSHR = 1<<(16+i);
         }
 
+        // go to standby mode
 		__WFE();
 		// restore clock to full speed
 		SystemInit();
